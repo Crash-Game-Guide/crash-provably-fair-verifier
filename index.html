@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crash Provably Fair Verifier</title>
+<meta name="description" content="Open-source provably fair verifier for crash games: HMAC-SHA256 in your browser, nothing sent anywhere.">
+<link rel="canonical" href="https://crashgameguide.com/tools/provably-fair-verifier/">
+<style>
+  :root { color-scheme: dark light; --bg: #0b0e14; --fg: #e8ecf3; --muted: #8a94a7; --line: #2a3346; --accent: #2bd97c; }
+  @media (prefers-color-scheme: light) { :root { --bg: #f7f8fb; --fg: #0b0e14; --muted: #4a5468; --line: #cfd5e2; --accent: #0a7a3e; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px; }
+  label { display: block; font-size: 14px; color: var(--muted); margin-top: 12px; }
+  input, select, button { width: 100%; box-sizing: border-box; font: inherit; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; }
+  button { margin-top: 16px; background: var(--accent); color: #0b0e14; font-weight: 700; border: 0; min-height: 48px; cursor: pointer; }
+  code { overflow-wrap: anywhere; }
+  .crash { font-size: 32px; font-variant-numeric: tabular-nums; color: var(--accent); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Crash provably fair verifier</h1>
+  <p>Everything runs in your browser. Full tool and explainer: <a href="https://crashgameguide.com/tools/provably-fair-verifier/">crashgameguide.com</a> · <a href="https://github.com/tomer-rizz-gaming/crash-provably-fair-verifier">source on GitHub</a></p>
+  <form id="f">
+    <label for="mode">Mode</label>
+    <select id="mode" name="mode"><option value="generic">Generic HMAC-SHA256</option><option value="bustabit">Bustabit (published scheme)</option></select>
+    <label for="server">Server seed (Bustabit: game hash)</label>
+    <input id="server" name="server" required autocomplete="off" spellcheck="false" value="b6a3e1f0c9d84a7e8f2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f">
+    <label for="client">Client seed (Bustabit: salt)</label>
+    <input id="client" name="client" autocomplete="off" spellcheck="false" value="my-lucky-seed">
+    <label for="nonce">Nonce</label>
+    <input id="nonce" name="nonce" type="number" min="0" value="1">
+    <label for="edge">House edge %</label>
+    <input id="edge" name="edge" type="number" min="0" max="20" step="0.1" value="1">
+    <button>Verify</button>
+  </form>
+  <div aria-live="polite">
+    <p>Server seed SHA-256<br><code id="sh">—</code></p>
+    <p>HMAC-SHA256<br><code id="h">—</code></p>
+    <p>Crash point<br><span class="crash" id="c">—</span></p>
+  </div>
+  <p><small>Maintained by <a href="https://crashgameguide.com">Crash Game Guide</a>. MIT licensed. 18+, play responsibly.</small></p>
+</main>
+<script type="module">
+  import { verify, PRESETS } from './src/index.js';
+  const f = document.getElementById('f');
+  f.mode.addEventListener('change', () => { if (f.mode.value === 'bustabit') f.client.value = PRESETS.bustabit.salt; });
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      const r = await verify({ preset: f.mode.value, serverSeed: f.server.value, clientSeed: f.client.value, nonce: Number(f.nonce.value), edge: Number(f.edge.value) / 100 });
+      sh.textContent = r.serverSeedHash; h.textContent = r.hmac; c.textContent = r.crash.toFixed(2) + 'x';
+    } catch (err) { c.textContent = err.message; }
+  });
+  f.requestSubmit();
+</script>
+</body>
+</html>

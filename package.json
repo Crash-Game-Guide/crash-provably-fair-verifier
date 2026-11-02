@@ -1,0 +1,19 @@
+{
+  "name": "crash-provably-fair-verifier",
+  "version": "1.0.0",
+  "description": "Dependency-free provably fair verifier for crash games: HMAC-SHA256 (Web Crypto + Node), generic mode and documented presets, CLI.",
+  "type": "module",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": { ".": { "types": "./src/index.d.ts", "default": "./src/index.js" } },
+  "bin": { "crash-verify": "bin/crash-verify.js" },
+  "files": ["src", "bin", "README.md", "LICENSE"],
+  "scripts": { "test": "node --test test/core.test.js" },
+  "engines": { "node": ">=18" },
+  "keywords": ["provably-fair", "crash-game", "hmac", "sha256", "verifier", "crypto-casino", "gambling"],
+  "homepage": "https://crashgameguide.com/tools/provably-fair-verifier/",
+  "repository": { "type": "git", "url": "git+https://github.com/tomer-rizz-gaming/crash-provably-fair-verifier.git" },
+  "bugs": "https://github.com/tomer-rizz-gaming/crash-provably-fair-verifier/issues",
+  "author": "Crash Game Guide (https://crashgameguide.com)",
+  "license": "MIT"
+}

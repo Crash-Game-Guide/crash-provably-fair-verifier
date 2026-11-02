@@ -1,0 +1,10 @@
+export type Preset = 'generic' | 'bustabit';
+export function fromHex(h: string): Uint8Array;
+export function toHex(buf: ArrayBuffer | Uint8Array): string;
+export function hmacSha256(key: string | Uint8Array, message: string | Uint8Array): Promise<string>;
+export function sha256(data: string | Uint8Array): Promise<string>;
+export function uniform52(hex: string): number;
+export function crashPoint(hex: string, edge?: number): number;
+export function bustabitBust(hex: string): number;
+export const PRESETS: Record<Preset, { name: string; doc: string; description: string; salt?: string }>;
+export function verify(input: { serverSeed: string; clientSeed?: string; nonce?: number; edge?: number; preset?: Preset }): Promise<{ preset: Preset; serverSeedHash: string; hmac: string; crash: number }>;
