@@ -12,8 +12,8 @@
   "engines": { "node": ">=18" },
   "keywords": ["provably-fair", "crash-game", "hmac", "sha256", "verifier", "crypto-casino", "gambling"],
   "homepage": "https://crashgameguide.com/tools/provably-fair-verifier/",
-  "repository": { "type": "git", "url": "git+https://github.com/tomer-rizz-gaming/crash-provably-fair-verifier.git" },
-  "bugs": "https://github.com/tomer-rizz-gaming/crash-provably-fair-verifier/issues",
+  "repository": { "type": "git", "url": "git+https://github.com/Crash-Game-Guide/crash-provably-fair-verifier.git" },
+  "bugs": "https://github.com/Crash-Game-Guide/crash-provably-fair-verifier/issues",
   "author": "Crash Game Guide (https://crashgameguide.com)",
   "license": "MIT"
 }

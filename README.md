@@ -1,11 +1,11 @@
 # crash-provably-fair-verifier
 
-[![test](https://github.com/tomer-rizz-gaming/crash-provably-fair-verifier/actions/workflows/test.yml/badge.svg)](https://github.com/tomer-rizz-gaming/crash-provably-fair-verifier/actions/workflows/test.yml)
+[![test](https://github.com/Crash-Game-Guide/crash-provably-fair-verifier/actions/workflows/test.yml/badge.svg)](https://github.com/Crash-Game-Guide/crash-provably-fair-verifier/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![dependencies: 0](https://img.shields.io/badge/dependencies-0-brightgreen.svg)
-[![demo](https://img.shields.io/badge/demo-GitHub%20Pages-blue.svg)](https://tomer-rizz-gaming.github.io/crash-provably-fair-verifier/)
+[![demo](https://img.shields.io/badge/demo-GitHub%20Pages-blue.svg)](https://crash-game-guide.github.io/crash-provably-fair-verifier/)
 
-**Live tool: https://crashgameguide.com/tools/provably-fair-verifier/** · Demo: https://tomer-rizz-gaming.github.io/crash-provably-fair-verifier/
+**Live tool: https://crashgameguide.com/tools/provably-fair-verifier/** · Demo: https://crash-game-guide.github.io/crash-provably-fair-verifier/
 Maintained by [Crash Game Guide](https://crashgameguide.com).
 
 Check a crash game round yourself: give it the server seed, client seed and nonce, and it recomputes the HMAC-SHA256 hash and the crash point. Zero dependencies, runs in the browser (Web Crypto) and in Node 18+ (Web Crypto, with `node:crypto` as fallback).
@@ -26,7 +26,7 @@ npx crash-verify --server-seed <seed> --client-seed <seed> --nonce 1 --edge 3 --
 npx crash-verify --preset bustabit --server-seed <64-hex game hash>
 ```
 
-Until the package is on npm, run it straight from GitHub with `npx github:tomer-rizz-gaming/crash-provably-fair-verifier --server-seed … --client-seed … --nonce 1`, or from a clone with `node bin/crash-verify.js …`.
+Until the package is on npm, run it straight from GitHub with `npx github:Crash-Game-Guide/crash-provably-fair-verifier --server-seed … --client-seed … --nonce 1`, or from a clone with `node bin/crash-verify.js …`.
 
 ### Library
 
